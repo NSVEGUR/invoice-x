@@ -10,17 +10,28 @@
     "start": "node -r esbuild-register ./src/server.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "body-parser": "^1.19.0",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "express-session": "^1.17.3",
+    "mongoose": "^8.0.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
+    "@types/cookie-session": "^2.0.47",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
+    "@types/express-session": "^1.17.10",
     "@types/morgan": "^1.9.2",
     "@types/node": "^15.12.2",
+    "@types/passport": "^1.0.15",
+    "@types/passport-google-oauth20": "^2.0.14",
     "esbuild": "^0.14.38",
     "esbuild-register": "^3.3.2",
     "eslint": "^7.32.0",

@@ -1,8 +1,15 @@
 import { createApp } from "./app";
+import dotenv from "dotenv";
 
-const port = process.env.PORT || 3001;
+dotenv.config({
+  path: ".env",
+});
+
+const PORT = process.env.PORT || 3001;
 const server = createApp();
 
-server.listen(port, () => {
-  console.log(`started api on [::]:${port}, url: http://localhost:${port}`);
+server.listen(PORT, () => {
+  console.log(`started api on [::]:${PORT}, url: http://localhost:${PORT}`);
 });
+
+export { server };

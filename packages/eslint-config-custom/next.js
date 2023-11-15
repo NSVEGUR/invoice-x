@@ -18,7 +18,6 @@ module.exports = {
     "@vercel/style-guide/eslint/browser",
     "@vercel/style-guide/eslint/react",
     "@vercel/style-guide/eslint/next",
-    "eslint-config-turbo",
   ].map(require.resolve),
   parserOptions: {
     project,
@@ -38,8 +37,4 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
-  rules: {
-    "import/no-default-export": "off",
-  },
 };

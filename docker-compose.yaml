@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  db:
+    container_name: invoice-db
+    image: postgres
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "invoice"
+volumes:
+  db-data:
+    name: invoice-vol
