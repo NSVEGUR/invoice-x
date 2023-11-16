@@ -12,8 +12,13 @@ const handleDuplicateFieldsErrorDB = (err: any) => {
   return new AppError(message, 400);
 };
 
+const handlePrismaClientValidationError = (err: any) => {
+  return new AppError("Prisma Client Validation Error", 500);
+};
+
 const sendErrorDev = (err: any, res: Response) => {
-  res.status(err.statusCode).json({
+  return res.status(err.statusCode).json({
+    success: false,
     status: err.status,
     error: err,
     message: err.message,
@@ -24,6 +29,7 @@ const sendErrorProd = (err: any, res: Response) => {
   // Errors created by me
   if (err.isOperational) {
     res.status(err.statusCode).json({
+      success: false,
       status: err.status,
       message: err.message,
     });
@@ -32,6 +38,7 @@ const sendErrorProd = (err: any, res: Response) => {
   else {
     console.error("ERROR!💥💥💥", err);
     res.status(500).json({
+      success: false,
       status: "error",
       message: "Something went wrong :(",
     });
@@ -46,12 +53,17 @@ export default function errorControler(
 ) {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
-  if (process.env.NODE_ENV === "development") {
-    sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production") {
     let error = err;
     if (err.name === "CastError") error = handleCastErrorDB(error);
+    if (err.name === "PrismaClientValidationError")
+      error = handlePrismaClientValidationError(error);
     if (err.code === 11000) error = handleDuplicateFieldsErrorDB(error);
     sendErrorProd(error, res);
+  } else {
+    let error = err;
+    if (err.name === "PrismaClientValidationError")
+      error = handlePrismaClientValidationError(error);
+    sendErrorDev(error, res);
   }
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Button } from "@ui/button";
+import { Link } from "@ui/link";
 
 export default function Header({ picture }: { picture?: string }): JSX.Element {
   return (

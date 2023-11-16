@@ -5,10 +5,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next({ request });
   }
   const headers = new Headers(request.headers);
-  const isAction = headers.get("next-action");
-  if (isAction) {
-    return NextResponse.next({ request });
-  }
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/user", {
       headers,

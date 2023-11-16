@@ -1,17 +1,14 @@
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const formData = await request.formData();
+  const body = await request.json();
   const headers = new Headers(request.headers);
-  console.log("api headers", headers);
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/invoice", {
+  console.log("hit api invoice");
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/invoice", {
     method: "POST",
-    body: JSON.stringify(Object.fromEntries(formData)),
+    body: JSON.stringify(body),
+    headers,
     credentials: "same-origin",
-    headers: {
-      ...headers,
-      "Content-Type": "application/json",
-    },
   });
-  return res;
+  return response;
 }

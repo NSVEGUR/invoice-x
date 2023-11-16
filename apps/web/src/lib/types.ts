@@ -5,6 +5,7 @@ export type User = {
 };
 
 export type Invoice = {
+  id: string;
   amount: number;
   dueDate: Date;
   recipientId: string;

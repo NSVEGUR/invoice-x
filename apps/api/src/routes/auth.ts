@@ -1,4 +1,3 @@
-import { getUser } from "@api/controllers/user";
 import { ExtendedUser } from "@api/types";
 import { Router } from "express";
 import passport from "passport";

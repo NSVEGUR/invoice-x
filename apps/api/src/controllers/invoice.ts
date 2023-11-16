@@ -7,15 +7,31 @@ import type { Request, Response, NextFunction } from "express";
 export const getInvoices = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = req.user as User;
-    const invoices = await prisma.invoice.findMany({
+    const created = await prisma.invoice.findMany({
       where: {
         userId: user.id,
+      },
+      include: {
+        user: true,
+        recipient: true,
+      },
+    });
+    const recipient = await prisma.invoice.findMany({
+      where: {
+        recipientId: user.id,
+      },
+      include: {
+        user: true,
+        recipient: true,
       },
     });
     return res.status(200).json({
       success: true,
       message: "Invoices have been successfully retrieved",
-      invoices,
+      invoices: {
+        created,
+        recipient,
+      },
     });
   }
 );
@@ -36,8 +52,8 @@ export const createInvoice = catchAsync(
       data: {
         userId: user.id,
         recipientId: recipient.id,
-        amount: details.amount,
-        dueDate: details.due,
+        amount: parseFloat(details.amount),
+        dueDate: new Date(details.due),
       },
     });
     return res.status(201).json({
