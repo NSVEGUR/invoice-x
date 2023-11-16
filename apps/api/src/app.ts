@@ -15,10 +15,11 @@ export const createApp = () => {
   const app = express();
   app
     .use(morgan("dev"))
+    .use(express.static("public"))
     .set("trust proxy", 1)
     .use(
       session({
-        secret: process.env.SESSION_SECRET || "",
+        secret: "InvoiceX-API",
         resave: false,
         saveUninitialized: false,
       })
@@ -32,6 +33,12 @@ export const createApp = () => {
         origin: "*",
       })
     )
+    .use("/health", (_, res) => {
+      res.status(200).json({
+        success: true,
+        message: "Hey, I am fine!",
+      });
+    })
     .use("/auth", AuthRouter)
     .get("/user", getUser)
     .use("/invoice", InvoiceRouter)

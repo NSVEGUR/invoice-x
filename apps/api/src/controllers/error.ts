@@ -17,6 +17,7 @@ const handlePrismaClientValidationError = (err: any) => {
 };
 
 const sendErrorDev = (err: any, res: Response) => {
+  console.error("💥💥💥ERROR: ", err);
   return res.status(err.statusCode).json({
     success: false,
     status: err.status,

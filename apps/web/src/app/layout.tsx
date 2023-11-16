@@ -2,6 +2,7 @@ import Gradient from "@/components/gradient";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import SnackbarProvider from "@components/snackbar/snackbar.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,20 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex min-h-screen flex-col items-center justify-center max-w-[100vw] overflow-x-hidden">
-          <div className="absolute z-10 flex items-center justify-center w-64 h-64">
-            <Gradient className="opacity-90 w-[120px] h-[120px]" conic small />
-          </div>
-          <div className="absolute inset-0 z-10 flex min-h-screen flex-col items-center justify-center p-10">
-            {children}
-          </div>
-          <div className="absolute flex items-center justify-center">
-            <Gradient
-              className="absolute top-[-500px] opacity-[0.15] w-[1000px] h-[1000px]"
-              conic
-            />
-          </div>
-        </main>
+        <SnackbarProvider>{children}</SnackbarProvider>
       </body>
     </html>
   );

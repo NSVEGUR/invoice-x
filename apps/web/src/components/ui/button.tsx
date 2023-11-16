@@ -9,6 +9,7 @@ const buttonVariants = cva(
       intent: {
         primary: "bg-inverted text-inverted hover:bg-muted hover:text-heading",
         secondary: "bg-muted-secondary text-heading hover:bg-muted",
+        accent: "bg-accent text-heading hover:bg-muted",
       },
       size: {
         primary: "py-2 px-4",

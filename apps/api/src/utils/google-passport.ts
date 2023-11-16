@@ -1,6 +1,4 @@
 import dotenv from "dotenv";
-import { prisma } from "@api/db";
-import AppError from "@api/utils/app-error";
 
 dotenv.config({
   path: ".env",
@@ -19,22 +17,11 @@ passport.use(
       passReqToCallback: true,
     },
     async function (req, accessToken, refreshToken, profile, callback) {
-      const user = await prisma.user.findUnique({
-        where: {
-          email: profile._json.email,
-        },
+      callback(null, {
+        ...profile,
+        accessToken,
+        refreshToken,
       });
-      if (!user) {
-        if (!profile._json.email) throw new AppError("Email not found", 404);
-        await prisma.user.create({
-          data: {
-            email: profile._json.email,
-            name: profile._json.name,
-            picture: profile._json.picture,
-          },
-        });
-      }
-      callback(null, profile);
     }
   )
 );

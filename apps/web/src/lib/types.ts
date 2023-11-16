@@ -13,3 +13,12 @@ export type Invoice = {
   userId: string;
   user: User;
 };
+
+export type Email = {
+  subject: string;
+  date: string;
+  senderName: string;
+  senderMail: string;
+  body: string;
+  hasInvoice: boolean;
+};
