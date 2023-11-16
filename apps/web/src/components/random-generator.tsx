@@ -12,12 +12,16 @@ export default function Form({ email }: { email: string }) {
     try {
       const formData = new FormData(event.currentTarget);
       formData.append("email", email);
+      setSnackbar({
+        message: "Generating Random Invoice...",
+        type: "promise",
+      });
       const response = await fetch("/api/send?random=true", {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(formData)),
       });
       const result = await response.json();
-      if (!result.id) {
+      if (result.error) {
         setSnackbar({
           message: result.message ?? "Some Unknown Error Occurred",
           type: "failure",

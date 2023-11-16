@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
     const data = await resend.emails.send({
       from: process.env.SENDER_MAIL ?? "",
       to: body.email,
-      subject: `InvoiceX - invoice for ${body.recipient}`,
+      subject: `InvoiceX - invoice for ${details.recipient}`,
       react: Invoice(details),
     });
-    return NextResponse.json({ data });
+    return NextResponse.json(data);
   }
 }
 
