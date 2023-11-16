@@ -3,7 +3,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const inputVariants = cva(
-  "inline-flex items-center justify-center rounded-md p-2 min-w-[400px]",
+  "inline-flex items-center justify-center rounded-md p-2 min-w-[400px] placeholder:text-sm placeholder:text-muted text-heading",
   {
     variants: {
       intent: {

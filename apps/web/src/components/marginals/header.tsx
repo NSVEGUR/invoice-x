@@ -5,11 +5,11 @@ import { Button } from "@ui/button";
 
 export default function Header({ picture }: { picture?: string }): JSX.Element {
   return (
-    <header className="px-20 py-5 bg-black border-b border-dominant flex justify-between">
-      <div className="flex gap-2 items-center">
+    <header className="fixed top-0 w-screen z-[100] px-20 py-5 bg-black border-b border-dominant flex justify-between">
+      <a className="flex gap-2 items-center" href="/">
         <Image src="/turborepo.svg" width={35} height={35} alt="logo" />
         <h1 className="font-bold text-lg">InvoiceX</h1>
-      </div>
+      </a>
       <div className="flex gap-2 items-center">
         <Button
           intent="secondary"

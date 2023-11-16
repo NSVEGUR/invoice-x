@@ -1,11 +1,9 @@
+import { getUser } from "@api/controllers/user";
+import { ExtendedUser } from "@api/types";
 import { Router } from "express";
 import passport from "passport";
-require("@api/utils/google-passport");
 
 const router = Router();
-
-router.use(passport.initialize());
-router.use(passport.session());
 
 router.get(
   "/google",
@@ -17,18 +15,14 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/auth/login/failed",
+    failureRedirect: "/auth/failed",
   }),
   (req, res) => {
     res.redirect(process.env.CLIENT_URL ?? "");
   }
 );
 
-interface ExtendedUser extends Express.User {
-  _json: any;
-}
-
-router.get("/login/success", (req, res) => {
+router.get("/success", (req, res) => {
   if (!req.user) {
     return res.status(403).json({
       success: false,
@@ -48,7 +42,7 @@ router.get("/login/success", (req, res) => {
   });
 });
 
-router.get("/login/failed", (req, res) => {
+router.get("/failed", (req, res) => {
   res.status(401).json({
     success: false,
     message: "User failed to authenticate.",

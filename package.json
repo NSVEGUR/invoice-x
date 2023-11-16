@@ -1,5 +1,8 @@
 {
   "private": true,
+  "prisma": {
+    "schema": "apps/api/prisma/schema.prisma"
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
