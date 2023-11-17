@@ -274,7 +274,12 @@ const productIcon = {
   border: "1px solid #1a191a",
 };
 
-const productTitle = { fontSize: "12px", fontWeight: "600", ...resetText };
+const productTitle = {
+  fontSize: "12px",
+  fontWeight: "600",
+  ...resetText,
+  color: "#ffffff",
+};
 
 const productDescription = {
   fontSize: "12px",
@@ -308,6 +313,7 @@ const productPrice = {
   fontSize: "12px",
   fontWeight: "600",
   margin: "0",
+  color: "#ffffff",
 };
 
 const productPriceLarge = {
@@ -316,6 +322,7 @@ const productPriceLarge = {
   fontWeight: "600",
   whiteSpace: "nowrap" as const,
   textAlign: "right" as const,
+  color: "#ffffff",
 };
 
 const productPriceWrapper = {

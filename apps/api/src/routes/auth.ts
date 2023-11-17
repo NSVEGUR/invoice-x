@@ -1,6 +1,12 @@
-import { ExtendedUser } from "@api/types";
 import { Router } from "express";
 import passport from "passport";
+import {
+  failureRedirect,
+  getAccessToken,
+  getRefreshToken,
+  logout,
+  successRedirect,
+} from "@api/controllers/auth";
 
 const router = Router();
 
@@ -10,50 +16,29 @@ router.get(
     scope: ["profile", "email"],
   })
 );
-
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/auth/failed",
+    failureRedirect: "/auth/failure",
   }),
   (req, res) => {
     res.redirect(process.env.CLIENT_URL ?? "");
   }
 );
-
-router.get("/success", (req, res) => {
-  if (!req.user) {
-    return res.status(403).json({
-      success: false,
-      message: "Not authorized",
-    });
+router.get(
+  "/google/zapier/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/auth/failure",
+  }),
+  (req, res) => {
+    const query = req.url.slice(req.url.indexOf("?"));
+    res.redirect(`${process.env.ZAPIER_CLIENT_URL}/${query}`);
   }
-  const user = req.user as ExtendedUser;
-  const data = user._json;
-  return res.status(200).json({
-    success: true,
-    message: "User has successfully authenticated",
-    user: {
-      name: data.name,
-      email: data.email,
-      picture: data.picture,
-    },
-  });
-});
-
-router.get("/failed", (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: "User failed to authenticate.",
-  });
-});
-
-router.get("/logout", (req, res) => {
-  console.log("requested for logout");
-  req.logout((err) => {
-    console.log(err);
-  });
-  res.redirect(process.env.CLIENT_URL ?? "");
-});
+);
+router.post("/refreshToken", getRefreshToken);
+router.post("/accessToken", getAccessToken);
+router.get("/success", successRedirect);
+router.get("/failure", failureRedirect);
+router.get("/logout", logout);
 
 export default router;

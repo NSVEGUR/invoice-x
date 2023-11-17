@@ -61,15 +61,27 @@ export default function GradientWrapper({
         />
       </div>
       {children}
-      <Gradient
+      <div
         style={{
-          top: "-500px",
-          width: "1000px",
-          height: "1000px",
-          opacity: "0.15",
+          display: "flex",
+          position: "absolute",
+          zIndex: 40,
+          justifyContent: "center",
+          alignItems: "center",
+          width: "16rem",
+          height: "16rem",
         }}
-        conic
-      />
+      >
+        <Gradient
+          style={{
+            top: "-500px",
+            width: "1000px",
+            height: "1000px",
+            opacity: "0.15",
+          }}
+          conic
+        />
+      </div>
     </>
   );
 }
