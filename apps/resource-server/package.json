@@ -1,0 +1,35 @@
+{
+  "name": "resource-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist && rm -rf node_modules",
+    "dev": "nodemon --exec \"node -r esbuild-register ./src/server.ts\" -e .ts",
+    "lint": "tsc --noEmit && eslint \"src/**/*.ts*\"",
+    "start": "node -r esbuild-register ./src/server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.1",
+    "ioredis": "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.12",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^15.12.2",
+    "database": "*",
+    "esbuild": "^0.14.38",
+    "esbuild-register": "^3.3.2",
+    "eslint": "^7.32.0",
+    "eslint-config-custom-api": "*",
+    "nodemon": "^2.0.15",
+    "tsconfig": "*",
+    "typescript": "^4.5.3"
+  }
+}

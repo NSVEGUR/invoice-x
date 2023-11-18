@@ -5,13 +5,24 @@ services:
     image: postgres
     restart: always
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
       POSTGRES_USER: "user"
       POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "invoice"
+      POSTGRES_DB: "db"
+  cache:
+    container_name: invoice-cache
+    image: redis:alpine
+    restart: always
+    volumes:
+      - cache:/data
+    ports:
+      - "6379:6379"
+
 volumes:
-  db-data:
+  db:
     name: invoice-vol
+  cache:
+    driver: local
