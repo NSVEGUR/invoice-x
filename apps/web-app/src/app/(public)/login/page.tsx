@@ -12,27 +12,17 @@ export default function Page(): JSX.Element {
         <form className="relative min-w-[500px] bg-black/50 backdrop-blur-sm gap-5 rounded-lg min-h-[50%] flex items-center justify-center flex-col">
           <h1 className=" text-2xl font-semibold">Login to InvoiceX</h1>
           <Google />
-          <div className="flex gap-5 items-center justify-between w-full px-5 absolute bottom-5">
+          <div className="flex gap-5 items-center justify-center w-full px-5 absolute bottom-5">
             <a
-              href="/docs"
+              href="https://invoice-x-docs.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
               className="hover:scale-110 transition-all duration-300"
             >
               Documentation
             </a>
-            <a
-              href="/demo"
-              className="hover:scale-110 transition-all duration-300"
-            >
-              Demonstration
-            </a>
           </div>
         </form>
-      </div>
-      <div className="absolute flex items-center justify-center">
-        <Gradient
-          className="absolute top-[-500px] opacity-[0.15] w-[1000px] h-[1000px]"
-          conic
-        />
       </div>
     </>
   );

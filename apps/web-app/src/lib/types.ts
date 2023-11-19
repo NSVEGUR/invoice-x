@@ -5,13 +5,12 @@ export type User = {
 };
 
 export type Invoice = {
-  id: string;
+  id: number;
   amount: number;
   dueDate: Date;
-  recipientId: string;
-  recipient: User;
-  userId: string;
-  user: User;
+  recipient: string;
+  status: string;
+  paidAt: Date;
 };
 
 export type Email = {

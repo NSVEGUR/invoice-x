@@ -5,6 +5,7 @@
   "scripts": {
     "generate": "drizzle-kit generate:pg",
     "push": "drizzle-kit push:pg",
+    "deploy": "pnpm generate && pnpm push",
     "studio": "drizzle-kit studio",
     "clean": "rm -rf node_modules"
   },

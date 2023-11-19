@@ -1,6 +1,6 @@
 {
-  "id": "e93ce8f5-f109-4d2b-883f-a88e1c915ebd",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "0cfc016b-a1fb-4d9d-9a03-43858c4f878a",
+  "prevId": "e93ce8f5-f109-4d2b-883f-a88e1c915ebd",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -38,6 +38,12 @@
           "type": "date",
           "primaryKey": false,
           "notNull": false
+        },
+        "created": {
+          "name": "created",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
         },
         "recipient": {
           "name": "recipient",

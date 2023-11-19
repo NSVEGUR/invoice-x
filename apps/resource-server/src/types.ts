@@ -1,3 +1,9 @@
-export interface ExtendedUser extends Express.User {
-  _json: any;
+import { User } from "database/schema";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: User;
+    }
+  }
 }

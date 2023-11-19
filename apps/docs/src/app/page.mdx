@@ -34,13 +34,21 @@
    $ pnpm install
    ```
 
-4. Start the database and redis with docker compose
+4. Start the database and redis with docker compose,
+
+   > `Dont forget to start docker daemon before running this command`
 
    ```bash
    $ docker compose up -d
    ```
 
-5. Running the application
+5. Deploy schema to database
+
+   ```bash
+   $ pnpm run db:deploy
+   ```
+
+6. Running the application
 
    ```bash
    $ pnpm run dev
@@ -63,7 +71,7 @@
    >
    > Web Application is dependent on Authentication Service and Resource Service, so make sure to start them first.
 
-6. Now open [http://localhost:3000](http://localhost:3000) in browser to keep up and running
+7. Now open [http://localhost:3000](http://localhost:3000) in browser to keep up and running
 
 # Microservices Architecture
 

@@ -18,5 +18,6 @@ export const invoices = pgTable("invoices", {
   status: invoiceStatus("status").notNull().default("unpaid"),
   dueDate: date("due_date").notNull(),
   paidAt: date("paid_at"),
+  created: text("created").notNull(),
   recipient: text("recipient").notNull(),
 });
