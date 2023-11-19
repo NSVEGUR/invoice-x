@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dominant-color: #000000;
+  --bg-muted-color: #1f1f1f;
+  --bg-muted-secondary-color: #25292e;
+  --bg-inverted-color: #f0f0f0;
+  --text-heading-color: #dadada;
+  --text-dominant-color: #d4d4d8;
+  --text-muted-color: #c2c5c8;
+  --text-inverted-color: #121212;
+  --accent-color: rgb(0, 112, 201);
+  --accent-soft-color: #858fa6;
+  --complement-color: #bfa678;
+  --border-dominant-color: #1a191a;
+}
+
+body {
+  color: var(--text-dominant-color);
+  background: var(--bg-dominant-color);
+  border-color: var(--border-dominant-color);
+}

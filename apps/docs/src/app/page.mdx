@@ -1,0 +1,74 @@
+# Setup
+
+## Requirements
+
+---
+
+- Node.js
+- Docker
+
+## Steps
+
+---
+
+1. Clone the repository
+2. Setup the environment variables
+
+   ```bash
+   $ cp packages/database/.env.example packages/database/.env
+   $ cp packages/auth-server/.env.example packages/server/.env
+   $ cp packages/resource-server/.env.example packages/resource-server/.env
+   $ cp packages/web-app/.env.example packages/web-app/.env
+   ```
+
+   > **Note:**
+   >
+   > - Change GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in auth-server based on your Google OAuth credentials.
+   > - Change SESSION_SECRET based on your interest, but it should be same in both auth-server and resource-server, since it is used for verification in resource server.
+   > - Other URLs are setup for local environment, if you want to deploy it on production, change them accordingly.
+
+3. Install dependencies via pnpm
+
+   ```bash
+   $ npm install -g pnpm //ignore if you already have pnpm installed
+   $ pnpm install
+   ```
+
+4. Start the database and redis with docker compose
+
+   ```bash
+   $ docker compose up -d
+   ```
+
+5. Running the application
+
+   ```bash
+   $ pnpm run dev
+   ```
+
+   Above command starts the applications concurrently at
+
+   - Authentication Service(auth-server): [http://localhost:3001](http://localhost:3001)
+   - Resource Service(resrouce-server): [http://localhost:3002](http://localhost:3002)
+   - Web Application(web-app): [http://localhost:3000](http://localhost:3000)
+   - Documentation(docs): [http://localhost:3003](http://localhost:3003)
+
+   > **Note:**
+   >
+   > If you want to run the applications seperately, you can do so by using the following command, here `app-name` can be auth-server, resource-server, web-app, docs:
+   >
+   > ```bash
+   > $ pnpm run dev --filter=<app-name>
+   > ```
+   >
+   > Web Application is dependent on Authentication Service and Resource Service, so make sure to start them first.
+
+6. Now open [http://localhost:3000](http://localhost:3000) in browser to keep up and running
+
+# Microservices Architecture
+
+> TODO
+
+# Features
+
+> TODO

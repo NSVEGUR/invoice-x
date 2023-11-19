@@ -1,5 +1,4 @@
 import { Link } from "@/components/ui/link";
-import RandomGenerator from "@/components/random-generator";
 import { getUser } from "@/lib/server/user";
 import { NEXT_PUBLIC_RESOURCE_URL } from "@/lib/constants";
 import { cookies } from "next/headers";

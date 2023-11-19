@@ -20,9 +20,7 @@ services:
       - cache:/data
     ports:
       - "6379:6379"
-
 volumes:
   db:
-    name: invoice-vol
   cache:
     driver: local

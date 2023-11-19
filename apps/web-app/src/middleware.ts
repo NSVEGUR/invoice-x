@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { NEXT_PUBLIC_AUTH_URL } from "@/lib/constants";
-import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
   if (request.url == "/login") {
