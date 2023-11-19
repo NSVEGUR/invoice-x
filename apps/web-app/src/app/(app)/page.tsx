@@ -34,7 +34,13 @@ export default async function Page(): Promise<JSX.Element> {
           <Link href="/create" className="h-8 w-full">
             Create Manual Invoice &#43;
           </Link>
-          <RandomGenerator email={user.email} />
+          <Link
+            href="/create?random=true"
+            className="h-8 w-full"
+            intent="accent"
+          >
+            Generate Random Invoice &#10023;
+          </Link>
         </div>
       </div>
       <section className="flex items-center flex-col w-full pt-5">

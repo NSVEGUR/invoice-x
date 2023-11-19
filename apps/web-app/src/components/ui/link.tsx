@@ -9,7 +9,10 @@ const linkVariants = cva(
       intent: {
         primary: " bg-white text-inverted hover:bg-muted hover:text-dominant",
         secondary:
-          " bg-muted-secondary text-dominant hover:bg-white hover:text-inverted",
+          "bg-muted-secondary text-dominant hover:bg-white hover:text-inverted",
+        accent: "bg-accent text-heading hover:bg-muted",
+        muted: " bg-gray-900 text-muted",
+        "accent-soft": "bg-accent-soft text-heading hover:bg-muted",
       },
       size: {
         primary: "py-2 px-4",

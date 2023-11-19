@@ -6,5 +6,5 @@ export default function Page() {
   if (!user) {
     return <h1>Some Unknown Error Occurred</h1>;
   }
-  return <Form email={user.email} />;
+  return <Form />;
 }

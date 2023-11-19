@@ -35,7 +35,6 @@ router.get(
     if (results.length > 0) {
       const user = results[0];
       const token = await signToken({ id: user.id, email: user.email });
-      console.log("token", token);
       res.cookie("token", token, {
         httpOnly: true,
       });

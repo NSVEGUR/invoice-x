@@ -1,11 +1,4 @@
-import {
-  serial,
-  text,
-  pgEnum,
-  real,
-  pgTable,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { serial, text, pgEnum, real, pgTable, date } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -23,7 +16,7 @@ export const invoices = pgTable("invoices", {
   id: serial("id").primaryKey(),
   amount: real("amount"),
   status: invoiceStatus("status").notNull().default("unpaid"),
-  dueDate: timestamp("due_date").notNull(),
-  paidAt: timestamp("paid_at"),
+  dueDate: date("due_date").notNull(),
+  paidAt: date("paid_at"),
   recipient: text("recipient").notNull(),
 });
