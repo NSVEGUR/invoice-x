@@ -56,6 +56,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           borderRadius: "12px",
           color: "#888888",
           whiteSpace: "pre-wrap",
+          overflow: "ellipsis",
+          wordBreak: "break-all",
         }}
       >
         {children}
