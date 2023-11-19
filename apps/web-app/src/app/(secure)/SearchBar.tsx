@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Spinner from "@components/spinner";

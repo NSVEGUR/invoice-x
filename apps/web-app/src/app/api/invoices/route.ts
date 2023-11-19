@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       recipient: body.recipient as string,
       amount: parseFloat((Math.random() * 10000 + 1).toFixed(2)),
       dueDate: new Date(
-        new Date().getMilliseconds() + Math.random() * 50 * 24 * 60 * 60 * 1000
+        new Date().getTime() + Math.random() * 50 * 24 * 60 * 60 * 1000
       ),
     };
   }

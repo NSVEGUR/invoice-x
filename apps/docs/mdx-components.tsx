@@ -3,12 +3,23 @@ import type { MDXComponents } from "mdx/types";
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
-      <h1 style={{ fontSize: "30px", color: "white", margin: "30px 0 20px 0" }}>
+      <h1
+        style={{
+          fontSize: "30px",
+          fontWeight: "bold",
+          color: "white",
+          margin: "30px 0 20px 0",
+          paddingBottom: "10px",
+          borderBottom: "2px solid rgba(108, 108, 108, 0.6)",
+        }}
+      >
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 style={{ color: "white", fontSize: "20px" }}>{children}</h2>
+      <h2 style={{ color: "white", fontWeight: "medium", fontSize: "20px" }}>
+        {children}
+      </h2>
     ),
     hr: () => (
       <hr

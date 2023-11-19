@@ -2,10 +2,8 @@
 
 ## Requirements
 
----
-
 - Node.js
-- Docker
+- Docker (For local setup)
 
 ## Steps
 
@@ -75,8 +73,55 @@
 
 # Microservices Architecture
 
-> TODO
+<br />
+![architecture](/architecture.png)
+<br />
 
 # Features
 
-> TODO
+- Docker for running in local environment
+
+## Authentication Service
+
+- Google OAuth for authentication
+- Both Session Storage and Cookie have been implemented for authorization
+
+<br />
+![authentication](/authentication.webp)
+<br />
+
+## Resource Service
+
+- Postgres as database
+- JWT for verfication provided by Authentication Service
+- Redis has been used for caching
+- Message Broker (BullMQ) has been used for background jobs
+- Zapier for sending emails and notifications triggered by message broker
+
+<br />
+<img
+  src="/email.png"
+  alt="email"
+  style={{
+    width: 500,
+    height: 500,
+    borderRadius: "10px",
+    border: "1px solid rgba(108, 108, 108, 0.3)",
+  }}
+/>
+<br />
+
+## Web Application
+
+- React based NextJS
+- Dashboard with server side rendering and serverside filters have been implemented for better performance and protection
+- A Simple Design System has been implemented for better maintainability and scalability
+- Random Invoice Generator along with Manual Invoice Creator has been implemented for testing purposes
+
+<br />
+![dashboard](/dashboard.webp)
+<br />
+
+---
+
+> Built with ❤️ by [Nagasai Vegur](https://nsvegur.me)

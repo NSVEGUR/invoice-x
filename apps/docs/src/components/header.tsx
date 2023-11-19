@@ -20,7 +20,11 @@ export default function Header() {
               className="invert"
             ></Image>
           </a>
-          <a href="#demo" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://youtu.be/ik9mvGDRZ1o"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"

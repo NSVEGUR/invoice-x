@@ -15,6 +15,20 @@
       "when": 1700392621574,
       "tag": "0001_exotic_grandmaster",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700412527626,
+      "tag": "0002_damp_chimera",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1700413069404,
+      "tag": "0003_motionless_the_leader",
+      "breakpoints": true
     }
   ]
 }

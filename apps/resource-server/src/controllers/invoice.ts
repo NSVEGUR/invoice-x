@@ -4,6 +4,8 @@ import { invoices } from "database/schema";
 import catchAsync from "@server/utils/catch-async";
 import AppError from "@server/utils/app-error";
 import { redis } from "@server/server";
+import { queue } from "@server/controllers/broker";
+import { getDateFromString } from "@server/utils/date";
 
 export const getInvoices = catchAsync(async function (
   req: Request,
@@ -12,16 +14,16 @@ export const getInvoices = catchAsync(async function (
 ) {
   const user = req.user;
   const cached = await redis.get(`${user.id}`);
-  // if (cached) {
-  //   const invoices = JSON.parse(cached);
-  //   return res.status(200).json({
-  //     success: true,
-  //     message: "Fetched invoices successfully",
-  //     data: {
-  //       invoices,
-  //     },
-  //   });
-  // }
+  if (cached) {
+    const invoices = JSON.parse(cached);
+    return res.status(200).json({
+      success: true,
+      message: "Fetched invoices successfully",
+      data: {
+        invoices,
+      },
+    });
+  }
   const invoices = await db.query.invoices.findMany({
     where: (invoices, { eq, or }) =>
       or(eq(invoices.created, user.email), eq(invoices.recipient, user.email)),
@@ -42,15 +44,20 @@ export const createInvoice = catchAsync(async function (
   next: NextFunction
 ) {
   const user = req.user;
-  const details = req.body;
+  const body = req.body;
   const recipient = await db.query.users.findFirst({
-    where: (users, { eq }) => eq(users.email, details.recipient),
+    where: (users, { eq }) => eq(users.email, body.recipient),
   });
-  const invoice = await db.insert(invoices).values({
-    amount: details.amount,
-    recipient: details.recipient,
-    dueDate: details.dueDate,
+  const details = {
+    amount: body.amount,
+    recipient: body.recipient,
+    dueDate: body.dueDate,
     created: user.email,
+  };
+  await db.insert(invoices).values(details);
+  await queue.add("creation", {
+    ...details,
+    dueDate: getDateFromString(`${details.dueDate}`),
   });
   await redis.del(`${user.id}`);
   if (recipient) {
@@ -59,9 +66,6 @@ export const createInvoice = catchAsync(async function (
   return res.status(201).json({
     success: true,
     message: "Created invoice successfully",
-    data: {
-      invoice,
-    },
   });
 });
 
@@ -147,8 +151,30 @@ export const deleteInvoice = catchAsync(async function (
   if (recipient) {
     await redis.del(`${recipient.id}`);
   }
-  return res.status(204).json({
+  return res.status(200).json({
     success: true,
     message: "Deleted invoice successfully",
+  });
+});
+
+export const remindInvoice = catchAsync(async function (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const id = Number(req.params.id);
+  const invoice = await db.query.invoices.findFirst({
+    where: (invoices, { eq }) => eq(invoices.id, id),
+  });
+  if (!invoice) {
+    return next(new AppError("Invoice not found", 404));
+  }
+  await queue.add("reminder", {
+    ...invoice,
+    dueDate: getDateFromString(`${invoice.dueDate}`),
+  });
+  return res.status(201).json({
+    success: true,
+    message: "Created invoice successfully",
   });
 });

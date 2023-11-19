@@ -5,6 +5,7 @@ import {
   deleteInvoice,
   updateInvoice,
   payInvoice,
+  remindInvoice,
 } from "@server/controllers/invoice";
 import { Router } from "express";
 
@@ -16,6 +17,7 @@ router.get("/", getInvoices);
 router.post("/", createInvoice);
 router.delete("/:id", deleteInvoice);
 router.patch("/:id", updateInvoice);
-router.post("/pay/:id", payInvoice);
+router.post("/:id/pay", payInvoice);
+router.post("/:id/remind", remindInvoice);
 
 export default router;

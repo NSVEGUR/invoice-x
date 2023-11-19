@@ -13,6 +13,7 @@ server.listen(PORT, () => {
     `🚀 started resource-server on [::]:${PORT}, url: http://localhost:${PORT}`
   );
 });
+
 redis.on("connect", () => {
   console.log(`🚀 connected to redis cache`);
 });

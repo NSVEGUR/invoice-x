@@ -13,9 +13,6 @@ async function getInvoices() {
       headers: {
         Authorization: "Bearer " + cookie?.value,
       },
-      next: {
-        tags: ["invoices"],
-      },
     });
     const result = await response.json();
     if (result.success == true) {
@@ -55,7 +52,7 @@ export default async function Page({
           </Link>
         </div>
       </div>
-      <Dashboard invoices={filtered} />
+      <Dashboard invoices={filtered} user={user} />
     </div>
   );
 }

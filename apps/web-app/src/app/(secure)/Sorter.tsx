@@ -1,5 +1,3 @@
-"use client";
-
 import { useCallback, useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Sort from "@/components/svg/sort";
@@ -114,7 +112,7 @@ const Sorter = () => {
           </button>
         </th>
         <th scope="col" className="relative px-6 py-3">
-          Action
+          Actions
         </th>
       </tr>
     </thead>
